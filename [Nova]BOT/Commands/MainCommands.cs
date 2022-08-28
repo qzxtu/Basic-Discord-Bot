@@ -104,22 +104,15 @@ namespace NovaBOT.Commands
         [Command("geoip")]
         public async Task ip(CommandContext ctx, [RemainingText] string args)
         {
-            try
-            {
-                WebClient wc = SecureWebClient();
-                {
-                    DiscordEmbedBuilder embed = new DiscordEmbedBuilder();
-                    string text = wc.DownloadString("https://api.apithis.net/geoip.php?ip=" + args);
-                    _ = embed.WithDescription(text.Replace("<br />", Environment.NewLine));
-                    _ = embed.WithTitle("GeoIP");
-                    _ = embed.WithColor(DiscordColor.Black);
-                    _ = await ctx.Channel.SendMessageAsync(embed: embed).ConfigureAwait(false);
-                }
-            }
-            catch
-            {
-                return;
-            }
+             WebClient wc = SecureWebClient();
+             {
+                DiscordEmbedBuilder embed = new DiscordEmbedBuilder();
+                string text = wc.DownloadString("https://api.apithis.net/geoip.php?ip=" + args);
+                embed.WithDescription(text.Replace("<br />", Environment.NewLine));
+                embed.WithTitle("GeoIP");
+                embed.WithColor(DiscordColor.Black);
+                await ctx.Channel.SendMessageAsync(embed: embed).ConfigureAwait(false);
+             }
         }
         #endregion
 
