@@ -615,8 +615,7 @@ namespace NovaBOT.Commands
                 StringBuilder sb = new StringBuilder(); DiscordEmbedBuilder embed = new DiscordEmbedBuilder(); HttpWebRequest request = (HttpWebRequest)WebRequest.Create
                      ("http://news.google.com/news?q=" + args + "&output=rss"); request.Method = "GET"; HttpWebResponse response = (HttpWebResponse)request.GetResponse(); if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                    Stream receiveStream = response.GetResponseStream(); StreamReader readStream = response.CharacterSet == ""
-                        ? new StreamReader(receiveStream)
+                    Stream receiveStream = response.GetResponseStream(); StreamReader readStream = string.IsNullOrEmpty(response.CharacterSet)                        ? new StreamReader(receiveStream)
                         : new StreamReader(receiveStream, Encoding.GetEncoding(response.CharacterSet));
                     string data = readStream.ReadToEnd(); DataSet ds = new DataSet(); StringReader reader = new StringReader(data); _ = ds.ReadXml(reader); DataTable dtGetNews = new DataTable(); if (ds.Tables.Count > 3)
                     {
