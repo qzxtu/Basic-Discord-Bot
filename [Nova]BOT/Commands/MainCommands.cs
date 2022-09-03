@@ -1,4 +1,4 @@
-﻿using NovaBOT.Models;
+using NovaBOT.Models;
 using DevComponents.DotNetBar;
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
@@ -72,7 +72,7 @@ namespace NovaBOT.Commands
             DiscordEmbedBuilder embed = new DiscordEmbedBuilder
             {
                 ImageUrl = "https://media.discordapp.net/attachments/689717323543609386/755980623826387014/1600310218312.png?width=180&height=180",
-                Description = $"Press F to pay respects to " + args + ":",
+                Description = "Press F to pay respects to "+ args + ":",
                 Color = new DiscordColor(37, 159, 207)
             };
             DiscordMessage Message = await ctx.Channel.SendMessageAsync(embed: embed).ConfigureAwait(false);
@@ -374,7 +374,7 @@ namespace NovaBOT.Commands
             };
             _ = embed.WithFooter($"{ctx.User.Username}" + " | " + DateTime.Now.ToString("MM/dd/yyyy") + " | ");
             _ = sb.AppendLine();
-            _ = args == null ? sb.AppendLine("**" + "Necesitas poner un texto!" + "**") : sb.AppendLine($"**" + @args.ToString() + "**");
+            _ = args == null ? sb.AppendLine("**" + "Necesitas poner un texto!" + "**") : sb.AppendLine("**"+ @args.ToString() + "**");
 
             {
             };
@@ -496,7 +496,7 @@ namespace NovaBOT.Commands
             }
             catch (Exception e)
             {
-                _ = await ctx.Channel.SendMessageAsync($"An error occured...").ConfigureAwait(false);
+                _ = await ctx.Channel.SendMessageAsync("An error occured...").ConfigureAwait(false);
                 Console.WriteLine($"{e}");
             }
         }
@@ -565,7 +565,7 @@ namespace NovaBOT.Commands
 
             DiscordChannel fightCategory = await server.CreateChannelAsync($"{name} :vs: ", ChannelType.Category);
             _ = await server.CreateChannelAsync("Bets and Feed", ChannelType.Text, fightCategory);
-            DiscordChannel fightVoiceChannel = await server.CreateChannelAsync($"For", ChannelType.Voice, fightCategory, default, null, userLimit);
+            DiscordChannel fightVoiceChannel = await server.CreateChannelAsync("For", ChannelType.Voice, fightCategory, default, null, userLimit);
             {
                 _ = await ctx.Channel.SendMessageAsync($"{member} has being intiated into the fight and the channel {name} :vs: has been made to do your betting").ConfigureAwait(false);
                 _ = await ctx.Channel.SendMessageAsync($"{fightVoiceChannel} has been created and you will be placed shortly").ConfigureAwait(false);
@@ -621,7 +621,7 @@ namespace NovaBOT.Commands
                     string data = readStream.ReadToEnd(); DataSet ds = new DataSet(); StringReader reader = new StringReader(data); _ = ds.ReadXml(reader); DataTable dtGetNews = new DataTable(); if (ds.Tables.Count > 3)
                     {
                         dtGetNews = ds.Tables["item"]; foreach (DataRow dtRow in dtGetNews.Rows)
-                        { string title = dtRow["title"].ToString(); string link = dtRow["link"].ToString(); string pubDate = dtRow["pubDate"].ToString(); embed.Color = DiscordColor.Black; _ = embed.WithTitle(":newspaper: " + title); _ = embed.WithFooter($"[" + "Source: Google News" + "]"); _ = embed.WithDescription(string.Format("{0:n0}", link) + Environment.NewLine + "**Publication Date: **" + string.Format("{0:n0}", pubDate)); _ = await ctx.Channel.SendMessageAsync(embed: embed).ConfigureAwait(false); break; }
+                        { string title = dtRow["title"].ToString(); string link = dtRow["link"].ToString(); string pubDate = dtRow["pubDate"].ToString(); embed.Color = DiscordColor.Black; _ = embed.WithTitle(":newspaper: " + title); _ = embed.WithFooter("["+ "Source: Google News" + "]"); _ = embed.WithDescription(string.Format("{0:n0}", link) + Environment.NewLine + "**Publication Date: **" + string.Format("{0:n0}", pubDate)); _ = await ctx.Channel.SendMessageAsync(embed: embed).ConfigureAwait(false); break; }
                     }
                 }
             }
@@ -906,7 +906,7 @@ namespace NovaBOT.Commands
                         string translatedText = TranslateText(args, "es", "en"); IRestClient restClient = new RestClient("https://coronavirus-19-api.herokuapp.com/countries/" + translatedText); IRestRequest restRequest = new RestRequest(0); IRestResponse restResponse = restClient.Execute(restRequest);
                         _ = new StringBuilder(); DiscordEmbedBuilder embed = new DiscordEmbedBuilder(); try
                         {
-                            embed.Color = DiscordColor.Black; _ = embed.WithTitle("Covid-19-Info-es" + "[" + args + "]"); _ = embed.WithFooter($"[" + "Source: worldometers.info" + "]"); JObject jobject = (JObject)JsonConvert.DeserializeObject(restResponse.Content); JToken jtoken = jobject["cases"]; JToken jtoken2 = jobject["deaths"]; JToken jtoken3 = jobject["recovered"]; JToken jtoken4 = jobject["active"]; JToken jtoken5 = jobject["critical"]; JToken jtoken6 = jobject["todayCases"]; JToken jtoken7 = jobject["todayDeaths"]; bool flag = string.IsNullOrEmpty((string)jtoken); if (flag)
+                            embed.Color = DiscordColor.Black; _ = embed.WithTitle("Covid-19-Info-es" + "[" + args + "]"); _ = embed.WithFooter("["+ "Source: worldometers.info" + "]"); JObject jobject = (JObject)JsonConvert.DeserializeObject(restResponse.Content); JToken jtoken = jobject["cases"]; JToken jtoken2 = jobject["deaths"]; JToken jtoken3 = jobject["recovered"]; JToken jtoken4 = jobject["active"]; JToken jtoken5 = jobject["critical"]; JToken jtoken6 = jobject["todayCases"]; JToken jtoken7 = jobject["todayDeaths"]; bool flag = string.IsNullOrEmpty((string)jtoken); if (flag)
                             { jtoken = 0; }
                             bool flag2 = string.IsNullOrEmpty((string)jtoken2); if (flag2)
                             { jtoken2 = 0; }
@@ -934,7 +934,7 @@ namespace NovaBOT.Commands
                         IRestClient restClient = new RestClient("https://coronavirus-19-api.herokuapp.com/countries/" + args); IRestRequest restRequest = new RestRequest(0); IRestResponse restResponse = restClient.Execute(restRequest);
                         _ = new StringBuilder(); DiscordEmbedBuilder embed = new DiscordEmbedBuilder(); try
                         {
-                            embed.Color = DiscordColor.Black; _ = embed.WithTitle("Covid-19 Info" + "[" + args + "]"); _ = embed.WithFooter($"[" + "Source: worldometers.info" + "]"); JObject jobject = (JObject)JsonConvert.DeserializeObject(restResponse.Content); JToken jtoken = jobject["cases"]; JToken jtoken2 = jobject["deaths"]; JToken jtoken3 = jobject["recovered"]; JToken jtoken4 = jobject["active"]; JToken jtoken5 = jobject["critical"]; JToken jtoken6 = jobject["todayCases"]; JToken jtoken7 = jobject["todayDeaths"]; bool flag = string.IsNullOrEmpty((string)jtoken); if (flag)
+                            embed.Color = DiscordColor.Black; _ = embed.WithTitle("Covid-19 Info" + "[" + args + "]"); _ = embed.WithFooter("["+ "Source: worldometers.info" + "]"); JObject jobject = (JObject)JsonConvert.DeserializeObject(restResponse.Content); JToken jtoken = jobject["cases"]; JToken jtoken2 = jobject["deaths"]; JToken jtoken3 = jobject["recovered"]; JToken jtoken4 = jobject["active"]; JToken jtoken5 = jobject["critical"]; JToken jtoken6 = jobject["todayCases"]; JToken jtoken7 = jobject["todayDeaths"]; bool flag = string.IsNullOrEmpty((string)jtoken); if (flag)
                             { jtoken = 0; }
                             bool flag2 = string.IsNullOrEmpty((string)jtoken2); if (flag2)
                             { jtoken2 = 0; }
@@ -976,7 +976,7 @@ namespace NovaBOT.Commands
             }
             catch
             {
-                _ = await ctx.Channel.SendMessageAsync($"An error occured...").ConfigureAwait(false);
+                _ = await ctx.Channel.SendMessageAsync("An error occured...").ConfigureAwait(false);
             }
         }
         #endregion
@@ -1032,7 +1032,7 @@ namespace NovaBOT.Commands
                 await Task.Delay(100); _ = await ctx.Channel.SendMessageAsync(output).ConfigureAwait(false); await Task.Delay(100); output = "";
             }
             catch
-            { _ = await ctx.Channel.SendMessageAsync($"An error occured...").ConfigureAwait(false); }
+            { _ = await ctx.Channel.SendMessageAsync("An error occured...").ConfigureAwait(false); }
         }
         #endregion
 
@@ -1042,11 +1042,11 @@ namespace NovaBOT.Commands
         [RequirePermissions(Permissions.KickMembers)]
         public async Task AskEightBall(CommandContext ctx, [RemainingText] string args = null)
         {
-            StringBuilder sb = new StringBuilder(); DiscordEmbedBuilder embed = new DiscordEmbedBuilder(); List<string> replies = new List<string> { "si", "no", "tal vez", "deslumbrante...." }; embed.Color = new DiscordColor(0, 255, 0); embed.Title = "🎱 ¡Bienvenido a 8-ball!"; _ = embed.WithFooter($"8-ball creado por: {ctx.User.Username}"); _ = sb.AppendLine($","); _ = sb.AppendLine(); if (args == null)
+            StringBuilder sb = new StringBuilder(); DiscordEmbedBuilder embed = new DiscordEmbedBuilder(); List<string> replies = new List<string> { "si", "no", "tal vez", "deslumbrante...." }; embed.Color = new DiscordColor(0, 255, 0); embed.Title = "🎱 ¡Bienvenido a 8-ball!"; _ = embed.WithFooter($"8-ball creado por: {ctx.User.Username}"); _ = sb.AppendLine(","); _ = sb.AppendLine(); if (args == null)
             { _ = sb.AppendLine("Lo sentimos, no puedo responder una pregunta que no hiciste."); }
             else
             {
-                string answer = replies[new Random().Next(replies.Count - 1)]; _ = sb.AppendLine($"Preguntaste:  [" + args + "]..."); _ = sb.AppendLine(); _ = sb.AppendLine($"...tu respuesta es:  [" + answer + "]"); switch (answer)
+                string answer = replies[new Random().Next(replies.Count - 1)]; _ = sb.AppendLine("Preguntaste:  ["+ args + "]..."); _ = sb.AppendLine(); _ = sb.AppendLine("...tu respuesta es:  ["+ answer + "]"); switch (answer)
                 {
                     case "si": { _ = embed.WithColor(new DiscordColor(0, 255, 0)); break; }
                     case "no": { _ = embed.WithColor(new DiscordColor(255, 0, 0)); break; }
