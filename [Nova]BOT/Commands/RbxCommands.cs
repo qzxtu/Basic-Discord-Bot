@@ -1,4 +1,4 @@
-﻿using DSharpPlus;
+using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
@@ -83,7 +83,7 @@ namespace NovaBOT.Commands
                 int x = int.Parse(args);
                 DiscordEmbedBuilder embed = new DiscordEmbedBuilder();
                 _ = embed.WithTitle("Here is your custom loadstring:");
-                _ = embed.WithDescription($"`loadstring(game:GetObjects('rbxassetid://" + x + "')[1].Source)()`");
+                _ = embed.WithDescription("`loadstring(game:GetObjects('rbxassetid://"+ x + "')[1].Source)()`");
                 _ = embed.WithColor(DiscordColor.Black);
                 _ = embed.WithThumbnailUrl("https://cdn.discordapp.com/attachments/689717323543609386/757668292172185660/Lua-Logo.png");
                 _ = await ctx.Channel.SendMessageAsync(embed: embed).ConfigureAwait(false);
@@ -129,7 +129,7 @@ namespace NovaBOT.Commands
                 }
                 catch
                 {
-                    _ = await ctx.Channel.SendMessageAsync($"An error occured...").ConfigureAwait(false);
+                    _ = await ctx.Channel.SendMessageAsync("An error occured...").ConfigureAwait(false);
                 }
             }
         }
