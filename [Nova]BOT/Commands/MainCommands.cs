@@ -243,7 +243,7 @@ namespace NovaBOT.Commands
         private readonly string h = "03"; [Command("w95key")]
         public async Task w95key(CommandContext ctx)
         {
-            bool running = true; DiscordMessage Message = await ctx.Channel.SendMessageAsync("Running Key Generation Loop...").ConfigureAwait(false); while (running == true)
+            bool running = true; DiscordMessage Message = await ctx.Channel.SendMessageAsync("Running Key Generation Loop...").ConfigureAwait(false); while (running)
             {
                 int l2 = Convert.ToInt32(CreateInterger(5)); int imdoingepicgamerint = new Random().Next(001, 366); string rand = rd.Next(1, 8).ToString(); if (rand == "1")
                 { rand = a; }
@@ -458,7 +458,7 @@ namespace NovaBOT.Commands
                 output.Title += " __[OWNER]__ ";
             }
 
-            _ = output.AddField("Verified?", member.Verified == true ? "Yes" : "No", true);
+            _ = output.AddField("Verified?", member.Verified? "Yes" : "No", true);
             foreach (DiscordRole role in member.Roles)
             {
                 _ = roles.Append($"[`{role.Name}`] ");

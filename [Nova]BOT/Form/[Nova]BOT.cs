@@ -1,4 +1,4 @@
-﻿using NovaBOT.Commands;
+using NovaBOT.Commands;
 using NovaBOT.DiscordRPC;
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
@@ -66,7 +66,7 @@ namespace NovaBOT
 
         private async void startBtn_Click(object sender, EventArgs e)
         {
-            if (startBtn.Checked == false)
+            if (!startBtn.Checked)
             {
                 sw.Stop();
                 startBtn.Text = "Start Bot";
@@ -265,7 +265,7 @@ namespace NovaBOT
 
         private void guna2Button1_Click_1(object sender, EventArgs e)
         {
-            if (guna2Button1.Checked == false)
+            if (!guna2Button1.Checked)
             {
                 guna2Button1.Text = "Disable Output (Speeds Things Up)";
                 TextWriter _writer = new TextBoxStreamWriter(outputTB);
