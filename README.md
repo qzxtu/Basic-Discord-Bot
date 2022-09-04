@@ -12,8 +12,8 @@ A very old version of a discord bot I made with dsharpplus using cubebotremaster
 - Main UI
 - Config UI
 - Cross platform
-- No coding required.
-- Easy to setup.
+- No coding required
+- Easy to setup
 
 ## Support
 
